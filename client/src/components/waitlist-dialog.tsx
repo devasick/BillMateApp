@@ -21,7 +21,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useJoinWaitlist } from "@/hooks/use-waitlist";
 import { Loader2, ArrowRight, CheckCircle2 } from "lucide-react";
-import { insertWaitlistSchema } from "@shared/schema";
+
+// Local schema definition
+const insertWaitlistSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+});
 
 interface WaitlistDialogProps {
   children: React.ReactNode;

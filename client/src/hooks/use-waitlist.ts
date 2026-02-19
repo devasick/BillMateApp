@@ -1,7 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { api, type insertWaitlistSchema } from "@shared/routes";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
+
+// Mock schema for client-only version
+const insertWaitlistSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+});
 
 type WaitlistInput = z.infer<typeof insertWaitlistSchema>;
 
@@ -10,24 +14,14 @@ export function useJoinWaitlist() {
 
   return useMutation({
     mutationFn: async (data: WaitlistInput) => {
-      // Validate input before sending
-      const validated = api.waitlist.join.input.parse(data);
+      // Validate input
+      const validated = insertWaitlistSchema.parse(data);
       
-      const res = await fetch(api.waitlist.join.path, {
-        method: api.waitlist.join.method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validated),
-      });
-
-      if (!res.ok) {
-        if (res.status === 400) {
-          const error = await res.json();
-          throw new Error(error.message || "Invalid email address");
-        }
-        throw new Error("Something went wrong. Please try again.");
-      }
-
-      return await res.json();
+      // Mock API call - just log to console for now
+      console.log("Waitlist signup:", validated);
+      
+      // Simulate successful response
+      return { success: true, email: validated.email };
     },
     onSuccess: () => {
       toast({
