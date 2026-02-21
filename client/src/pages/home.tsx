@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { DashboardMockup } from "@/components/dashboard-mockup";
 import { FeatureCard } from "@/components/feature-card";
 import { PricingCard } from "@/components/pricing-card";
-import { WaitlistDialog } from "@/components/waitlist-dialog";
+
 import {
   Accordion,
   AccordionContent,
@@ -50,14 +50,21 @@ export default function Home() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <WaitlistDialog>
-              <Button variant="ghost" className="hidden sm:inline-flex text-slate-600 hover:text-primary">
-                Log in
-              </Button>
-            </WaitlistDialog>
-            <WaitlistDialog>
-              <Button size="sm" className="bg-slate-900 text-white hover:bg-slate-800">Get Started</Button>
-            </WaitlistDialog>
+            <Button 
+              variant="ghost" 
+              className="hidden sm:inline-flex text-slate-600 hover:text-primary"
+              onClick={() => window.location.href = 'https://app.getbillmate.de/login'}
+            >
+              Log in
+            </Button>
+            <Button 
+              size="sm" 
+              className="bg-slate-900 text-white hover:bg-slate-800"
+              onClick={() => window.location.href = 'https://app.getbillmate.de/register'}
+            >
+              Get Started
+            </Button>
+            
           </div>
         </div>
       </nav>
@@ -82,16 +89,16 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <WaitlistDialog>
+              
                 <ShinyButton className="w-full sm:w-auto text-lg h-14">
                   Start Free Trial
                 </ShinyButton>
-              </WaitlistDialog>
-              <WaitlistDialog>
+              
+              
                 <Button variant="outline" className="w-full sm:w-auto h-14 px-8 text-lg border-slate-200 bg-white hover:bg-slate-50 text-slate-700">
                   See Demo
                 </Button>
-              </WaitlistDialog>
+              
             </div>
           </motion.div>
 
@@ -287,11 +294,11 @@ export default function Home() {
           <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
             Join thousands of freelancers who have saved time and increased their revenue with BillMate.
           </p>
-          <WaitlistDialog>
+          
             <ShinyButton className="text-lg px-10 py-6 h-auto">
               Get Started for Free
             </ShinyButton>
-          </WaitlistDialog>
+         
           <p className="mt-6 text-sm text-slate-500">No credit card required • Cancel anytime</p>
         </div>
       </section>
